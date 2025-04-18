@@ -1,0 +1,50 @@
+<view class="container">
+  <view class="title">目标检测</view>
+  
+  <view class="image-wrapper">
+    <view class="image-container">
+      <image 
+        wx:if="{{imageUrl}}" 
+        src="{{imageUrl}}" 
+        mode="aspectFit" 
+        class="preview-image"
+        bindload="onImageLoad"
+      />
+      <view wx:else class="placeholder">
+        点击下方按钮上传图片
+      </view>
+      <!-- 检测框 -->
+      <view wx:if="{{imageInfo && detectionResult}}" class="detection-boxes">
+        <view 
+          wx:for="{{detectionResult}}" 
+          wx:key="index" 
+          class="detection-box"
+          style="left: {{item.displayBox.x}}px; top: {{item.displayBox.y}}px; width: {{item.displayBox.w}}px; height: {{item.displayBox.h}}px;"
+        >
+          <text class="box-label">{{item.class}} {{item.conf * 100}}%</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="button-container">
+    <button 
+      type="primary" 
+      bindtap="chooseImage" 
+      loading="{{loading}}"
+    >
+      {{loading ? '处理中...' : '选择图片'}}
+    </button>
+  </view>
+
+  <view wx:if="{{detectionResult}}" class="result-container">
+    <view class="result-title">检测到 {{detectionResult.length}} 个目标：</view>
+    <view wx:for="{{detectionResult}}" wx:key="index" class="result-item">
+      <view class="result-item-header">目标 {{index + 1}}</view>
+      <view class="result-item-content">
+        <text>类别：{{item.class}}</text>
+        <text>置信度：{{item.conf}}</text>
+      </view>
+    </view>
+  </view>
+</view> 
