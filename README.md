@@ -7,7 +7,5 @@ A simple example of calling the Yolo object detection model on a WeChat applet, 
 python flask_yolo.py
 ```
 ## 2. Run miniprogram with `微信开发者工具`
-![image](images/init_page.png)
-![image](images/detect_result.png)
-
-
+<img src="/images/init_page.png" alt="image" width="279" height="600">
+<img src="images/detect_result.png" alt="image" width="279" height="600">
